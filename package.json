@@ -1,13 +1,13 @@
 {
   "name": "modern-select",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An HTML select element with text input and autocompletion",
   "main": "select.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "growing-input": "1.1.1"
+    "growing-input": "1.1.4"
   },
   "keywords": [
     "webcomponent",
