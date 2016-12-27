@@ -1,5 +1,20 @@
-if (window.hasOwnProperty('Meteor')) var Input = require('growing-input').Input
-else var Input = customElements.get('growing-input')
+if (window.hasOwnProperty('Meteor')) {
+    Input = require('growing-input').Input
+}
+
+const style =
+    "* { font: 11px helvetica }" +
+    "input { border: none; outline: none; width: 1em}" +
+    ".inputContainer { border: 1px solid #dfdfdf; padding-left: 0.5em; border-radius: 3px}" +
+    ":host(:focus) .inputContainer {border-color: #6d9aff}" +
+    ":host(:focus) {outline: none}" +
+    ":host(:not(:focus)) .completionsContainer {display: none}" +
+    ".completionsContainer { border: 1px solid rgba(0,0,0,0.2); box-shadow: 0px 7px 18px rgba(0,0,0,0.1); border-radius: 5px; margin-top: 1px; overflow: hidden}" +
+    "::slotted(div) { padding: 0 5px; }" +
+    "::slotted(div.highlighted) { background: #0f66da; color: #ffffff }" +
+    "::slotted(.selected), ::slotted(.hidden) {display: none}" +
+    ".selectedOptionsContainer {display: inline}" +
+    ".selectedOptionsContainer a { margin-right: 0.3em }"
 
 class Select extends HTMLElement {
     constructor() {
@@ -46,7 +61,7 @@ class Select extends HTMLElement {
         for (const option of this.options) {
             option.completionNode.removeEventListener('click', option.addSelectedOption)
         }
-        this.options = this._completionsSlot.assignedNodes().map(completionNode => {
+        this.options = Array.prototype.map.call(this.querySelectorAll('div'), completionNode => {
             const option = {completionNode}
             completionNode.addEventListener('click', event => this.addSelectedOption(event, option))
             completionNode.addEventListener('mousedown', event =>
@@ -194,22 +209,10 @@ class Select extends HTMLElement {
 
 window.customElements.define('modern-select', Select)
 
-const style =
-    "* { font: 11px helvetica }" +
-    "input { border: none; outline: none; width: 1em}" +
-    ".inputContainer { border: 1px solid #dfdfdf; padding-left: 0.5em; border-radius: 3px}" +
-    ":host(:focus) .inputContainer {border-color: #6d9aff}" +
-    ":host(:focus) {outline: none}" +
-    ":host(:not(:focus)) .completionsContainer {display: none}" +
-    ".completionsContainer { border: 1px solid rgba(0,0,0,0.2); box-shadow: 0px 7px 18px rgba(0,0,0,0.1); border-radius: 5px; margin-top: 1px; overflow: hidden}" +
-    "::slotted(div) { padding: 0 5px; }" +
-    "::slotted(div.highlighted) { background: #0f66da; color: #ffffff }" +
-    "::slotted(.selected), ::slotted(.hidden) {display: none}" +
-    ".selectedOptionsContainer {display: inline}" +
-    ".selectedOptionsContainer a { margin-right: 0.3em }"
+if (typeof exports != "undefined") {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    })
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-})
-
-exports["default"] = Select
+    exports["default"] = Select
+}

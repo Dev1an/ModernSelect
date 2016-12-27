@@ -1,6 +1,6 @@
 {
   "name": "modern-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An HTML select element with text input and autocompletion",
   "main": "select.js",
   "scripts": {
