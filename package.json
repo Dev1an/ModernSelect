@@ -1,0 +1,19 @@
+{
+  "name": "modern-select",
+  "version": "1.0.0",
+  "description": "An HTML select element with text input and autocompletion",
+  "main": "select.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "growing-input": "1.1.1"
+  },
+  "keywords": [
+    "webcomponent",
+    "html5",
+    "select"
+  ],
+  "author": "dev1an",
+  "license": "ISC"
+}
